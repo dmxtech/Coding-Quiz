@@ -7,20 +7,22 @@ Javascript development
 # Description
 I created a responsive question and answer coding quiz with a timer of 50 seconds.
 # Table of contents
-> Assets      
+> Assets 
+     > assets\Coding Quiz.gif
      > script.js
      > style.css
 > README.md
 > INDEX.HTML
 
 # Website link
-https://github.com/dmxtech/CSS-Html
+https://github.com/dmxtech/Coding-Quiz
 
-https://dmxtech.github.io/CSS-Html/
+https://dmxtech.github.io/Coding-Quiz/
 
 # screenshot link
 ## Mock-Up
+https://snipboard.io/EUI6Wh.jpg
+
+assets\Coding Quiz.gif
 
 
-
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
