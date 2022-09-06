@@ -5,21 +5,20 @@ const scorefinal = document.getElementById("finalScore");
 const begining = document.getElementById("begining");
 const gameover = document.getElementById("gameover");
 const scorebutton = document.getElementById("submitScore");
-const highscores = document.getElementById("highscore-score");
+const hs = document.getElementById("highscore-score");
 const questions = document.getElementById("questions");
 const timer = document.getElementById("timer");
 const startbutton = document.getElementById("startbutton");
 const endgame = document.getElementById("endGameButtons");
 const hscontainer = document.getElementById("highscoreContainer");
 const hspage = document.getElementById("high-scorePage");
-const initials = document.getElementById("initials");
-const displayinitials = document.getElementById("highscore-initials");
+const initials = document.getElementById("name");
+const showname = document.getElementById("highscoreName");
 
-
-const buttonA = document.getElementById("a");
-const buttonB = document.getElementById("b");
-const buttonC = document.getElementById("c");
-const buttonD = document.getElementById("d");
+const BA = document.getElementById("a");
+const BB = document.getElementById("b");
+const BC = document.getElementById("c");
+const BD = document.getElementById("d");
 
 // Question, answers & correct answers
 const quizQuestions = [
@@ -107,10 +106,10 @@ function generateQuizQuestion() {
     }
     const currentQuestion = quizQuestions[currentQuestionIndex];
     questions.innerHTML = "<p>" + currentQuestion.question + "</p>";
-    buttonA.innerHTML = currentQuestion.choiceA;
-    buttonB.innerHTML = currentQuestion.choiceB;
-    buttonC.innerHTML = currentQuestion.choiceC;
-    buttonD.innerHTML = currentQuestion.choiceD;
+    BA.innerHTML = currentQuestion.choiceA;
+    BB.innerHTML = currentQuestion.choiceB;
+    BC.innerHTML = currentQuestion.choiceC;
+    BD.innerHTML = currentQuestion.choiceD;
 };
 
 // function that hides the start button, starts the timer and shows7 first question
@@ -141,9 +140,9 @@ scorebutton.addEventListener("click", function highscore() {
         alert("please write name");
         return false;
     } else {
-        const savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+        const savedhs = JSON.parse(localStorage.getItem("savedhs")) || [];
         const currentUser = initials.value.trim();
-        var currentHighscore = {
+        var newhs = {
             name: currentUser,
             score: score
         };
@@ -154,27 +153,27 @@ scorebutton.addEventListener("click", function highscore() {
         endgame.style.display = "flex";
 
 
-        //Local storage save highscores
-        savedHighscores.push(currentHighscore);
-        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
-        generateHighscores();
+        //Local storage save hs
+        savedhs.push(newhs);
+        localStorage.setItem("savedhs", JSON.stringify(savedhs));
+        generatehs();
 
     }
 
 });
 
 // Clear the highscore function, create new one from file storage
-function generateHighscores() {
-    displayinitials.innerHTML = "";
-    highscores.innerHTML = "";
-    const highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-    for (i = 0; i < highscores.length; i++) {
+function generatehs() {
+    showname.innerHTML = "";
+    hs.innerHTML = "";
+    const hs = JSON.parse(localStorage.getItem("savedhs")) || [];
+    for (i = 0; i < hs.length; i++) {
         const newNameSpan = document.createElement("li");
         const newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
-        displayinitials.appendChild(newNameSpan);
-        highscores.appendChild(newScoreSpan);
+        newNameSpan.textContent = hs[i].name;
+        newScoreSpan.textContent = hs[i].score;
+        showname.appendChild(newNameSpan);
+        hs.appendChild(newScoreSpan);
     }
 }
 
@@ -186,19 +185,19 @@ function showHighscore() {
     hspage.style.display = "block";
     endgame.style.display = "flex";
 
-    generateHighscores();
+    generatehs();
 }
 
 // clear highscore local storage function
-function clearScore() {
+function resetScore() {
     window.localStorage.clear();
-    displayinitials.textContent = "";
-    highscores.textContent = "";
+    showname.textContent = "";
+    hs.textContent = "";
 }
 
 // reset quiz function
 function resetQuiz() {
-    timeLeft = 50;
+    timeLeft = 60;
     score = 0;
     currentQuestionIndex = 0;
     hscontainer.style.display = "none";
