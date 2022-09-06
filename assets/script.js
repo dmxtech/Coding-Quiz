@@ -197,7 +197,7 @@ function clearScore() {
 }
 
 // reset quiz function
-function replayQuiz() {
+function resetQuiz() {
     timeLeft = 50;
     score = 0;
     currentQuestionIndex = 0;
