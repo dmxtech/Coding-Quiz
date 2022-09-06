@@ -20,6 +20,13 @@ const BB = document.getElementById("b");
 const BC = document.getElementById("c");
 const BD = document.getElementById("d");
 
+//Todays date 
+var d = new Date();
+let date = d.getDay();
+document.getElementById("date").innerHTML = d;
+console.log(d);
+
+
 // Question, answers & correct answers
 const quizQuestions = [
 
