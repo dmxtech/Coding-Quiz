@@ -147,7 +147,7 @@ scorebutton.addEventListener("click", function highscore() {
         alert("please write name");
         return false;
     } else {
-        const savedhs = JSON.parse(localStorage.getItem("savedhs")) || [];
+        var savedhs = JSON.parse(localStorage.getItem("savedhs")) || [];
         const currentUser = initials.value.trim();
         var newhs = {
             name: currentUser,
@@ -167,51 +167,51 @@ scorebutton.addEventListener("click", function highscore() {
 
     }
 
-});
 
-// Clear the highscore function, create new one from file storage
-function generatehs() {
-    showname.innerHTML = "";
-    hs.innerHTML = "";
-    const hs = JSON.parse(localStorage.getItem("savedhs")) || [];
-    for (i = 0; i < hs.length; i++) {
-        const newNameSpan = document.createElement("li");
-        const newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = hs[i].name;
-        newScoreSpan.textContent = hs[i].score;
-        showname.appendChild(newNameSpan);
-        hs.appendChild(newScoreSpan);
+    // Clear the highscore function, create new one from file storage
+    function generatehs() {
+        showname.innerHTML = "";
+        savedhs.innerHTML = "";
+        var hs = JSON.parse(localStorage.getItem("savedhs")) || [];
+        for (i = 0; i < hs.length; i++) {
+            const newNameSpan = document.createElement("li");
+            const newScoreSpan = document.createElement("li");
+            newNameSpan.textContent = hs[i].name;
+            newScoreSpan.textContent = hs[i].score;
+            showname.appendChild(newNameSpan);
+            hs.appendChild(newScoreSpan);
+        }
     }
-}
 
-// display highscore function, hide start quiz and game over
-function showHighscore() {
-    begining.style.display = "none"
-    gameover.style.display = "none";
-    hscontainer.style.display = "flex";
-    hspage.style.display = "block";
-    endgame.style.display = "flex";
+    // display highscore function, hide start quiz and game over
+    function showHighscore() {
+        begining.style.display = "none"
+        gameover.style.display = "none";
+        hscontainer.style.display = "flex";
+        hspage.style.display = "block";
+        endgame.style.display = "flex";
 
-    generatehs();
-}
+        generatehs();
+    }
 
-// clear highscore local storage function
-function resetScore() {
-    window.localStorage.clear();
-    showname.textContent = "";
-    hs.textContent = "";
-}
+    // clear highscore local storage function
+    function resetScore() {
+        window.localStorage.clear();
+        showname.textContent = "";
+        hs.textContent = "";
+    }
 
-// reset quiz function
-function resetQuiz() {
-    timeLeft = 60;
-    score = 0;
-    currentQuestionIndex = 0;
-    hscontainer.style.display = "none";
-    gameover.style.display = "none";
-    begining.style.display = "flex";
+    // reset quiz function
+    function resetQuiz() {
+        timeLeft = 60;
+        score = 0;
+        currentQuestionIndex = 0;
+        hscontainer.style.display = "none";
+        gameover.style.display = "none";
+        begining.style.display = "flex";
 
-}
+    }
+});
 
 //alert window of correct answer
 function checkAnswer(answer) {
